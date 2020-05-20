@@ -134,5 +134,20 @@ describe("GildedRose shop manager", function () {
     });
   });
 
+  // it("Conjured item decay twice", () => {
+  //   istItems.push(new Item("random conjured item", 20, 30));
+
+  //   const gildedRose = new Shop(listItems);
+  //   const items = gildedRose.updateQuality();
+
+  //   var expected = [ 
+  //     { sellIn: 10, quality: 30}
+  //   ];
+  //   expected.forEach(function (testCase, idx) {
+  //     expect(items[idx].quality).toBe(testCase.quality);
+  //     expect(items[idx].sellIn).toBe(testCase.sellIn);
+  //   });
+  // })
+
 
 });

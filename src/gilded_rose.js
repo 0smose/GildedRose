@@ -41,7 +41,7 @@ class Shop {
   }
 
   calculateBackstageQuality(item){
-    const sellIn = item.sellIn + 1 //item.sellIn should be decremented *after* the following ruleset applied
+    const sellIn = item.sellIn + 1 
     if(item.sellIn < 0) item.quality = 0
     else if(sellIn > 10) item.quality += 1
     else if(sellIn > 5) item.quality += 2
@@ -53,11 +53,6 @@ class Shop {
     if(item.sellIn < 0) item.quality += 1
   }
 
-  /**
-  * updateQuality() shows how classes of certain items will be treated in a general way
-  * the more specific approaches as to how individual items are treated are in the
-  * respective helper functions. 
-  */
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       let item = this.items[i]
