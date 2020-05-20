@@ -119,14 +119,14 @@ describe("GildedRose shop manager", function () {
   })
   
   it("Baisser de 1 la qualité et sellIn d'item normaux", function () {
-    listItems.push(new Item("Sulfuras, Hand of Ragnaros", 20, 50));
+    listItems.push(new Item("Sulfuras, Hand of Ragnaros", 20, 51));
 
 
     const gildedRose = new Shop(listItems);
     const items = gildedRose.updateQuality();
 
     var expected = [
-      { sellIn: 20, quality: 50 }
+      { sellIn: 20, quality: 51 }
     ];
     expected.forEach(function (testCase, idx) {
       expect(items[idx].quality).toBe(testCase.quality);
