@@ -1,4 +1,4 @@
-var { Shop, Item } = require('../src/gilded_rose.js');
+  var { Shop, Item } = require('../src/gilded_rose.js');
 describe("GildedRose shop manager", function () {
   var listItems;
 
@@ -73,4 +73,66 @@ describe("GildedRose shop manager", function () {
       expect(osefItem[0].quality).toEqual(5)
     
   })
+
+  describe("la qualité augmente par 3 quand il reste 5 jours ou moins (Aged Brie et Backstage passes)", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10)])
+    const backstagePasses = gildedRose.items[0]
+  
+    describe("Quality increases by 2 when there are 10 days or less.", () => {
+      it("Increases in quality to 20", () => {
+        for(let i = 0; i < 5; i++){
+          gildedRose.updateQuality()
+        }
+        expect(backstagePasses.quality).toEqual(20)
+        expect(backstagePasses.sellIn).toEqual(5)
+      })
+    })
+
+    describe("Quality goes up by 3 when there are 5 days or less.", () => {
+      it("Increases in quality to 35", () => {
+        for(let i = 0; i < 5; i++){
+          gildedRose.updateQuality()
+        }
+        expect(backstagePasses.quality).toEqual(35)
+        expect(backstagePasses.sellIn).toEqual(0)
+      })
+    })
+    
+  })
+  
+
+  describe("la qualité de sulfuras ne se modifie pas", () => {
+    const gildedRose = new Shop([
+      new Item('Sulfuras, Hand of Ragnaros', 10, 20)])
+      //new Item('Sulfuras, Hand of Ragnaros', 20, 10)])
+    const sulfura = gildedRose.items[0]
+    //const sulfura2 = gildedRose.items[1]
+    it('quality remains the same', () => {
+      for (let i = 0; i< 5; i++) {
+        gildedRose.updateQuality()
+      }
+      expect(sulfura.quality).toEqual(20)
+      //expect(sulfura2.quality).toEqual(20)
+      
+    })
+  })
+  
+  it("Baisser de 1 la qualité et sellIn d'item normaux", function () {
+    listItems.push(new Item("Sulfuras, Hand of Ragnaros", 20, 50));
+
+
+    const gildedRose = new Shop(listItems);
+    const items = gildedRose.updateQuality();
+
+    var expected = [
+      { sellIn: 20, quality: 50 }
+    ];
+    expected.forEach(function (testCase, idx) {
+      expect(items[idx].quality).toBe(testCase.quality);
+      expect(items[idx].sellIn).toBe(testCase.sellIn);
+    });
+  });
+
+
 });
